@@ -13,6 +13,7 @@ const objectDefinition = () => {
      * @default
      */
     version: process.env.PACKAGE_VERSION,
+    useWebGL: true,
     /**
      * Color settings.
      * Most color options for visualizations are set in the color object in the options. You activate custom coloring by setting `"auto": false` which turns off auto-coloring.

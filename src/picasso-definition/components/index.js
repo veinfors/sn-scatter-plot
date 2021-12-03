@@ -7,7 +7,7 @@ import createHeatMapLabels from './heat-map-labels';
 import createReferenceLines from './reference-lines';
 import createPointLabels from './point-labels';
 import createDisclaimer from './disclaimer';
-import createOutOfBounds from './out-of-bounds';
+// import createOutOfBounds from './out-of-bounds';
 import createHeatMapLegend from './heat-map-legend';
 import createMiniChart from './mini-chart';
 
@@ -19,20 +19,22 @@ export default function createComponents({ context, models, flags, picasso, char
     return [disclaimer];
   }
 
+  const useWebGL = layoutService.getLayoutValue('useWebGL', true);
+
   const components = [
     createGridLines(models),
     ...createReferenceLines({ models, context }),
     createPoint(models),
-    createHeatMap({ models, flags }),
+    useWebGL ? false : createHeatMap({ models, flags }),
     ...createAxes({ models, flags }),
     ...createAxisTitles({ models, context }),
-    createPointLabels(models),
-    createHeatMapLabels({ themeService, chartModel, picasso, context }),
-    createOutOfBounds({ models, context }),
+    useWebGL ? false : createPointLabels(models),
+    useWebGL ? false : createHeatMapLabels({ themeService, chartModel, picasso, context }),
+    // useWebGL ? false : createOutOfBounds({ models, context }),
     ...colorService.custom.legendComponents(),
-    createHeatMapLegend({ models, context, chart }),
+    useWebGL ? false : createHeatMapLegend({ models, context, chart }),
     disclaimer,
-    ...createMiniChart({ models, flags }),
+    useWebGL ? false : [...createMiniChart({ models, flags })],
     ...tooltipService.getComponents(),
   ].filter(Boolean);
   // setDisplayOrder(components);

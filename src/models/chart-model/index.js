@@ -102,6 +102,7 @@ export default function createChartModel({
   }
 
   const update = ({ settings } = {}) => {
+    const before = Date.now();
     chart.update({
       data: [
         {
@@ -113,6 +114,7 @@ export default function createChartModel({
       ],
       settings,
     });
+    console.log('render time: ', Date.now() - before, ' ms');
   };
 
   const miniChartEnabled = () => {

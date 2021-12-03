@@ -477,10 +477,34 @@ export default function propertyDefinition(env) {
     },
   };
 
+  const pointRenderer = {
+    type: 'items',
+    items: {
+      pointRenderer: {
+        label: 'Renderer',
+        ref: 'dataPoint.renderer',
+        // show(data) {
+        //   return data.xAxis.show !== 'none';
+        // },
+        options: [
+          {
+            value: 'webgl',
+            translation: 'webGl',
+          },
+          {
+            value: 'canvas',
+            translation: 'canvas',
+          },
+        ],
+      },
+    },
+  };
+
   return {
     type: 'items',
     component: 'accordion',
     items: {
+      pointRenderer,
       data,
       addons,
       settings,

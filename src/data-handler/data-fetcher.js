@@ -11,7 +11,7 @@ export default function createDataFetcher({ layoutService, model }) {
         qTop: 0,
         qLeft: 0,
         qWidth: 4,
-        qHeight: 2000,
+        qHeight: 2500,
       };
 
       // Do not fetch same data window twice in a row (important for performance)
